@@ -1,13 +1,15 @@
-namespace API.Entities
+
+using System.ComponentModel.DataAnnotations;
+
+namespace API.DTOs
 {
-    public class Customer
+    public class CustomerDto
     {
-        public int Id { get; set; }
+        [Required]
         public string Email { get; set; }
+        [Required]
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PhotoUrl { get; set; }
-        public DateTime CreatedAt { get; set; }
-
     }
 }
