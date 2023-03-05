@@ -46,7 +46,6 @@ namespace API.Controllers
                 LastName = textInfo.ToTitleCase(customerDto.LastName.ToLower()),
                 Email = customerDto.Email.ToLower(),
                 PhotoUrl = customerDto.PhotoUrl,
-                CreatedAt = DateTime.Now
             };
 
             _context.Customers.Add(customer);

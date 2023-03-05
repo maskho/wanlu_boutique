@@ -10,5 +10,8 @@ namespace API.Data
         }
 
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<ShopBranch> ShopBranches { get; set; }
     }
 }
