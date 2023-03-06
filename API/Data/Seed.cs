@@ -1,4 +1,5 @@
 using System.Text.Json;
+using API.DTOs;
 using API.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -57,6 +58,45 @@ namespace API.Data
             foreach (var shop in shops)
             {
                 context.ShopBranches.Add(shop);
+            }
+
+            await context.SaveChangesAsync();
+        }
+        public static async Task SeedTransactions(DataContext context)
+        {
+            if (await context.Transactions.AnyAsync()) return;
+
+            var transcationData = await File.ReadAllTextAsync("Data/TransactionsSeedData.json");
+
+            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+
+            var transactionDtos = JsonSerializer.Deserialize<List<TransactionDto>>(transcationData);
+
+
+            foreach (var transactionDto in transactionDtos)
+            {
+                List<Product> products = new List<Product>();
+
+                foreach (var productId in transactionDto.ProductIds)
+                {
+                    var product = await context.Products.FindAsync(productId);
+                    if (product != null)
+                    {
+                        products.Add(product);
+                    }
+                }
+                var customer = await context.Customers.FindAsync(transactionDto.CustomerId);
+                var shopBranch = await context.ShopBranches.FindAsync(transactionDto.ShopBranchId);
+
+                var newTransaction = new Transaction
+                {
+                    CreatedAt = transactionDto.CreatedAt,
+                    Products = products,
+                    Customer = customer,
+                    ShopBranch = shopBranch
+                };
+
+                context.Transactions.Add(newTransaction);
             }
 
             await context.SaveChangesAsync();

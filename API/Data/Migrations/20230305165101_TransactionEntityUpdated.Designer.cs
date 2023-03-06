@@ -3,6 +3,7 @@ using System;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230305165101_TransactionEntityUpdated")]
+    partial class TransactionEntityUpdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.14");
@@ -61,7 +63,12 @@ namespace API.Data.Migrations
                     b.Property<int>("StockQty")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("TransactionId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("TransactionId");
 
                     b.ToTable("Products");
                 });
@@ -104,19 +111,11 @@ namespace API.Data.Migrations
                     b.ToTable("Transactions");
                 });
 
-            modelBuilder.Entity("ProductTransaction", b =>
+            modelBuilder.Entity("API.Entities.Product", b =>
                 {
-                    b.Property<int>("ProductsId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("TransactionsId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("ProductsId", "TransactionsId");
-
-                    b.HasIndex("TransactionsId");
-
-                    b.ToTable("ProductTransaction");
+                    b.HasOne("API.Entities.Transaction", null)
+                        .WithMany("Products")
+                        .HasForeignKey("TransactionId");
                 });
 
             modelBuilder.Entity("API.Entities.Transaction", b =>
@@ -138,21 +137,6 @@ namespace API.Data.Migrations
                     b.Navigation("ShopBranch");
                 });
 
-            modelBuilder.Entity("ProductTransaction", b =>
-                {
-                    b.HasOne("API.Entities.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("API.Entities.Transaction", null)
-                        .WithMany()
-                        .HasForeignKey("TransactionsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("API.Entities.Customer", b =>
                 {
                     b.Navigation("Transactions");
@@ -161,6 +145,11 @@ namespace API.Data.Migrations
             modelBuilder.Entity("API.Entities.ShopBranch", b =>
                 {
                     b.Navigation("Transactions");
+                });
+
+            modelBuilder.Entity("API.Entities.Transaction", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

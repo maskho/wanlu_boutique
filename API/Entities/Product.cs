@@ -10,5 +10,6 @@ namespace API.Entities
         public int StockQty { get; set; }
         public decimal Price { get; set; }
         public string PhotoUrl { get; set; }
+        public List<Transaction> Transactions { get; set; }
     }
 }
