@@ -1,0 +1,51 @@
+[
+    {
+        "Id": 2000,
+        "Name": "Gamis",
+        "StockQty": 37,
+        "Price": 2240000,
+        "PhotoUrl": "https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png"
+    },
+    {
+        "Id": 2001,
+        "Name": "Celana Panjang",
+        "StockQty": 26,
+        "Price": 2852000,
+        "PhotoUrl": "https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png"
+    },
+    {
+        "Id": 2002,
+        "Name": "Celana Pendek",
+        "StockQty": 39,
+        "Price": 2625000,
+        "PhotoUrl": "https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png"
+    },
+    {
+        "Id": 2003,
+        "Name": "Kemeja",
+        "StockQty": 34,
+        "Price": 3940000,
+        "PhotoUrl": "https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png"
+    },
+    {
+        "Id": 2004,
+        "Name": "Kaos",
+        "StockQty": 20,
+        "Price": 990000,
+        "PhotoUrl": "https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png"
+    },
+    {
+        "Id": 2005,
+        "Name": "BH",
+        "StockQty": 32,
+        "Price": 3260000,
+        "PhotoUrl": "https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png"
+    },
+    {
+        "Id": 2006,
+        "Name": "Gelang",
+        "StockQty": 23,
+        "Price": 2846800,
+        "PhotoUrl": "https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png"
+    }
+]
